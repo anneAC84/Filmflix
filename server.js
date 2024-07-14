@@ -7,11 +7,12 @@ const methodOverride = require('method-override')
 const session = require('express-session');
 const MongoStore = require("connect-mongo");
 
-
+const isSignedIn = require('./middleware/is-signed-in.js')
+const passUserToView = require('./middleware/pass-user-to-view.js')
 
 // Controllers / Routes
 const authController = require("./controllers/auth.js");
-
+const filmsController = require('./controllers/films');
 
 
 // Constants
@@ -35,11 +36,9 @@ app.use(
         mongoUrl: process.env.MONGODB_URI,
     }),
   })
-)
+);
 
-
-// Routes
-
+app.use(passUserToView)
 
 // Landing page
 app.get('/', async (req, res) => {
@@ -53,7 +52,10 @@ app.get('/', async (req, res) => {
   // Auth
   app.use("/auth", authController);
 
+  
 
+// Films
+app.use('/films', isSignedIn, filmsController);
 
 // Connections
 const connect = async () => {
