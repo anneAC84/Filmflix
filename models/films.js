@@ -9,7 +9,7 @@ const filmsSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
- MainActors: {
+ mainActors: {
     type: [String],
     required: true,
  },
@@ -26,7 +26,8 @@ const filmsSchema = new mongoose.Schema({
 
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
  
  

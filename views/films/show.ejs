@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= films.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1><%= films.title %></h1>
+
+    <h2>Details</h2>
+    <p><%= films.thumbnail %></p>
+    <p>Year Released: <%= films.yearReleased %></p>
+    <p>Main Actors: $<%= films.mainActors %></p>
+    <p>Description: <%= films.description %></p>
+    
+    <% if (films.owner._id.equals(user._id)) { %>
+        <form action="/films/<%=films._id%>?_method=DELETE" method="POST">
+            <button type="submit">Delete Film</button>
+        </form>
+        <a href="/films/<%=films._id%>/edit" >Edit Film</a>
+    <% } %>
+
+  </body>
+</html>

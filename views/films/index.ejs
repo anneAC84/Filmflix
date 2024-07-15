@@ -8,6 +8,19 @@
     <title>All Films</title>
   </head>
   <body>
+    <%- include('../partials/_navbar.ejs') %>
     <h1>Here's all the Films</h1>
+
+    <ul>
+        <% films.forEach((films) => { %>
+        <li>
+            <a href="/films/<%=films._id%>">
+            The film  <%= films.title %> was added by <%= films.owner.username %>.
+        </a>
+        </li>
+        <% }) %>
+  </ul>
+  
+    <a href="/films/new">Add a New Film</a>
   </body>
 </html>

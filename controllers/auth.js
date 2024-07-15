@@ -63,6 +63,7 @@ if (!userInDatabase) {
 // Add username to session user
   req.session.user = {
     username: userInDatabase.username,
+    _id: userInDatabase._id
   };
 
 
