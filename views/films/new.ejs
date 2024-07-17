@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Add a New Film</title>
   </head>
   <body>
@@ -18,8 +19,8 @@
         <input type="text" name="mainActors" id="main-actors" required />
         <label for="description">Description:</label>
         <input type="text" name="description" id="description" required />
-        <label for="thumbnail">ThumbnailImage</label>
-        <input type="text" name="thumbnail" id="thumbnail" />
+        <label for="image-URL">Image URL</label>
+        <input type="url" name="imageURL" id="image-URL" />
         <button type="submit">Add Film</button>
 
         <% if (typeof errorMessage !== 'undefined') { %>

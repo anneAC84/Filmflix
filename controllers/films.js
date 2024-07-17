@@ -1,15 +1,20 @@
 // controllers/listings.js
 const express = require('express');
 const router = express.Router();
+const isSignedIn = require('../middleware/is-signed-in.js')
+const passUserToView = require('../middleware/pass-user-to-view.js')
+
 
 //Model
-const Films = require('../models/films');
+const Film = require('../models/film');
 const { route } = require('./auth');
+const { findOneAndUpdate } = require('../models/user.js');
+const { isObjectIdOrHexString } = require('mongoose');
 
 //routes/controllers
 router.get('/', async (req, res) => {
 try {
-    const films = await Films.find().populate('owner')
+    const films = await Film.find().populate('owner')
     console.log(films)
     res.render('films/index.ejs', {
         films
@@ -20,7 +25,7 @@ try {
 }
 })
 
-router.get('/new', (req, res) => {
+router.get('/new',isSignedIn, (req, res) => {
     try {
         res.render('films/new.ejs') 
     } catch (error) {
@@ -30,10 +35,12 @@ router.get('/new', (req, res) => {
 
 })
 
-router.post('/', async (req, res) => {
+
+
+router.post('/', isSignedIn, async (req, res) => {
     try {
         req.body.owner = req.session.user._id
-        const createdFilm = await Films.create(req.body)
+        const createdFilm = await Film.create(req.body)
         res.redirect('/films') 
     } catch (error) {
         console.log(error)
@@ -43,28 +50,43 @@ router.post('/', async (req, res) => {
 
 })
 // Show route
-router.get('/:filmsId', async (req,res) => {
+router.get('/:filmId', isSignedIn, async (req,res) => {
     try {
-        const filmsId = req.params.filmsId
-        const films = await Films.findById(filmsId).populate('owner')
-        console.log(films)
+        const filmId = req.params.filmId
+        const film = await Film.findById(filmId).populate('owner')
+
+       if(!film) {
+        const error = new Error('Film not findOneAndUpdate.')
+        error.status = 404
+        throw error
+    }
+
+    const userHasFavorited = film.favoritedByUsers.some(objectId => {
+         return objectId.equals(req.session.user._id)
+    });
+
         res.render('films/show.ejs', {
-            films
+            film,
+            userHasFavorited
         })
     } catch (error) {
 
         console.log(error)
+
+     if (error.status === 404) {
+        return res.render ('404.ejs')
+     }
         res.redirect('/')
     }
 })
 //Delete route
-router.delete('/:filmsId', async (req, res) => {
+router.delete('/:filmId', isSignedIn, async (req, res) => {
     try {
-        const filmsId = req.params.filmsId
-        const filmsToDelete = await Films.findById(filmsId)
-         if(filmsToDelete.owner.equals(req.session.user._id)) {
+        const filmId = req.params.filmId
+        const filmToDelete = await Film.findById(filmId)
+         if(filmToDelete.owner.equals(req.session.user._id)) {
         //Delete Film
-        await filmsToDelete.deleteOne()
+        await filmToDelete.deleteOne()
         res.redirect('/films')
         } else { 
             //do not delete film
@@ -75,29 +97,79 @@ router.delete('/:filmsId', async (req, res) => {
         res.redirect('/')
     }
 })
-
-router.get('/:filmsId/edit', async (req, res) => {
+//edit route
+router.get('/:filmId/edit', isSignedIn, async (req, res) => {
     try {
- const films = await Films.findById(req.params.filmsId)
- if (!films) throw new Error()
-    res.render('films/edit.ejs', {films})
-    console.log(films)
-    } catch (error) {
+ const film = await Film.findById(req.params.filmId)
+ if (!film) throw new Error('Film not found')
+    if (film.owner.equals(req.session.user._id)) {
+    res.render('films/edit.ejs', {film})
+    } else {
+   res.redirect(`/films/${film._id}`)
+    } 
+} catch (error) {
+        console.log(error)
         res.redirect('/films')
     }
 })
 
 //Update route
-router.put('/:filmsId', async (req,res) => {
+router.put('/:filmId', isSignedIn, async (req,res) => {
     try {
-        const filmsToUpdate = await Films.findById(req.params.filmsId)
-        if(!filmsToUpdate) throw new Error()
-            console.log(filmsToUpdate)
+        const filmToUpdate = await Film.findById(req.params.filmId)
+        if(!filmToUpdate) throw new Error('No Film to update')
+            //check ownership
+        if (filmToUpdate.owner.equals(req.session.user._id)) {
+            //update the film with req.body
+            await filmToUpdate.updateOne(req.body)
+            res.redirect(`/films/${req.params.filmId}`)
+        } else {
+            // return an error message
+            res.send('You do not have permission to update this Film.')
+        }
     } catch (error) {
     console.log(error)
+    res.redirect('/films')
 
 
     }
 })
+
+//favorite route
+
+router.post('/:filmId/favorited-by/:userId', isSignedIn, async (req, res) => {
+    try {
+        const filmId = req.params.filmId
+        const updatedFilm = await Film.findByIdAndUpdate(filmId, {
+            $push: { favoritedByUsers: req.session.user._id }
+        })
+      
+      res.redirect(`/films/${filmId}`);
+    } catch (error) {
+      console.log(error);
+      res.redirect('/films');
+    }
+  });
+
+  // unfavorite delete route
+
+  // controllers/listings.js
+
+router.delete('/:filmId/favorited-by/:userId', async (req, res) => {
+    try {
+        const filmId = req.params.filmId
+        const film = await Film.findByIdAndUpdate(filmId, {
+            $pull: { favoritedByUsers: req.session.user._id }
+        })
+        res.redirect(`/films/${filmId}`);
+      } catch (error) {
+        console.log(error);
+        res.redirect('/');
+      }
+    });
+
+    
+
+     
 
 module.exports = router;

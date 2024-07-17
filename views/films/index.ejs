@@ -5,17 +5,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>All Films</title>
   </head>
   <body>
+    
+  <header>
+    <form id="form">
+      <input type="text" id="search" class="search" placeholder="Search">
+    </form>
+  </header>
+  
     <%- include('../partials/_navbar.ejs') %>
     <h1>Here's all the Films</h1>
 
     <ul>
-        <% films.forEach((films) => { %>
+        <% films.forEach((film) => { %>
         <li>
-            <a href="/films/<%=films._id%>">
-            The film  <%= films.title %> was added by <%= films.owner.username %>.
+            <a href="/films/<%=film._id%>">
+           <%= film.title %>
+           <p><img src="<%= film.imageURL %>" alt=“<%= film.title %>” width ="200"></p>
         </a>
         </li>
         <% }) %>

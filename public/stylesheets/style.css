@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: #9ac2ef;
+  }
+
+  .index-body {
+    background-image: url('https://img.freepik.com/free-photo/movie-background-collage_23-2149876028.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100vw;
+    color: white;
+  }
+
+  .main-header {
+    font-weight: bold;
+    color: white;
+    font-size:100px;
+    margin: -160px 20px 0 20px;
+  }
+  
+  .subheader {
+    margin: 0 20px 0 20px;
+    font-size: 1.4em;
+  }
+  
+  .index-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .auth-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 80px 0 0;
+    height: 100%;
+  }
+  
+  .signup-link,
+  .signin-link {
+    text-decoration: none;
+    font-size: 1.5em;
+    padding: 8px 0;
+    border-radius: 25px;
+    width: 10em;
+    text-align: center;
+  }
+  
+  .signup-link {
+    background-color: #ce4866;
+    color: white;
+    margin: 0 0 20px 0;
+  }
+  
+  .signup-link:hover {
+    background-color: #ff5378;
+  }
+  
+  .signin-link {
+    background-color: #f6e7e7;
+    color: #1c2e5b;
+    margin: 20px 0 0 0;
+  }
+  
+  .signin-link:hover {
+    background-color: #ffffff;
+  }

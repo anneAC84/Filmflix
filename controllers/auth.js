@@ -51,6 +51,7 @@ router.get('/sign-in', async (req, res) => {
 if (!userInDatabase) {
     console.log('User does not exist in datatbase')
   return res.send('Login failed. Please try again.');
+ 
 }
 
     const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password)
@@ -58,7 +59,7 @@ if (!userInDatabase) {
     if (!validPassword) {
         console.log('User exists but password did not match')
         return res.send('Login failed. Please try again.');
-    
+        
   }
 // Add username to session user
   req.session.user = {

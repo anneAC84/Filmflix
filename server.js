@@ -6,18 +6,20 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const session = require('express-session');
 const MongoStore = require("connect-mongo");
+//const isSignedIn = require('./middleware/is-signed-in.js')
 
-const isSignedIn = require('./middleware/is-signed-in.js')
 const passUserToView = require('./middleware/pass-user-to-view.js')
 
 // Controllers / Routes
 const authController = require("./controllers/auth.js");
 const filmsController = require('./controllers/films');
+const reviewsController = require('./controllers/reviews.js');
 
 
 // Constants
 const app = express();
 const port = process.env.PORT || 3000
+const path = require('path');
 
 //Middleware
 // Middleware to parse URL-encoded data from forms
@@ -26,6 +28,7 @@ app.use(express.urlencoded({ extended: true}))
 app.use(methodOverride('_method'))
 // Morgan for logging HTTP requests
 app.use(morgan('dev'))
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs')
 app.use(
     session({
@@ -43,7 +46,7 @@ app.use(passUserToView)
 // Landing page
 app.get('/', async (req, res) => {
     
-    res.render('index', {
+    res.render('index.ejs', {
         user: req.session.user,
     });
   });
@@ -51,11 +54,10 @@ app.get('/', async (req, res) => {
 
   // Auth
   app.use("/auth", authController);
+ // app.use(isSignedIn);
+  app.use('/films/reviews', reviewsController);
+  app.use('/films', filmsController);
 
-  
-
-// Films
-app.use('/films', isSignedIn, filmsController);
 
 // Connections
 const connect = async () => {
@@ -63,6 +65,13 @@ const connect = async () => {
         await mongoose.connect(process.env.MONGODB_URI)
         console.log('Database connection established')
         
+
+    // 404
+app.get('*', (req,res)=> {
+    res.render('404.ejs')
+}) 
+
+
         app.listen(port, () => {
             console.log(`Server listening on port ${port}`)
         })
