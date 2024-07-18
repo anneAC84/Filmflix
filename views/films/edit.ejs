@@ -8,23 +8,27 @@
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
+    <div class="editfilmbody">
     <h1>Edit a Film</h1>
 
+    <div class=" edit-container">
     <form action="/films/<%=film._id%>?_method=PUT"method="POST">
         <label for="title">Title:</label>
-        <input type="text" name="title" id="title" value="<%=film.title%>"/>
+        <input type="text" name="title" id="title" value="<%=film.title%>" required />
         <label for="year-released">Year Released:</label>
-        <input type="number" name="yearReleased" id="year-released" value="<%=film.yearReleased%>" />
+        <input type="number" name="yearReleased" id="year-released" value="<%=film.yearReleased%>" required />
         <label for="main-actors">Main Actors:</label>
-        <input type="text" name="mainActors" id="main-actors" value="<%=film.mainActors%>" />
+        <input type="text" name="mainActors" id="main-actors" value="<%=film.mainActors%>" required />
         <label for="description">Description:</label>
-        <input type="text" name="description" id="description" value="<%=film.description%>"/>
+        <input type="text" name="description" id="description" value="<%=film.description%>" required />
         <label for="image-URL">Image</label>
-        <input type="url" name="imageURL" id="image-URL" value="<%=film.imageURL%>"/> 
+        <input type="url" name="imageURL" id="image-URL" value="<%=film.imageURL%>" required /> 
         <button type="submit">Edit Film</button>
-
+      </div>
         <% if (typeof errorMessage !== 'undefined') { %>
            <p class="error"> <%= errorMessage %></p>
+
+          </div>
        <% } %>
       </form>
    

@@ -8,28 +8,45 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>All Films</title>
   </head>
+  
   <body>
+
+    <div class="filmIndex-body">
     
   <header>
-    <form id="form">
-      <input type="text" id="search" class="search" placeholder="Search">
+
+    
+     <form action id="/films"method="Search">
+      <input type="text" name="title" id="title" placeholder="Search" required>
+      <button type="submit">Search</button>
+      
     </form>
   </header>
   
-    <%- include('../partials/_navbar.ejs') %>
-    <h1>Here's all the Films</h1>
+    <%- include('../partials/_navbar.ejs') %> 
+    <h1>Browse all Films</h1>
 
-    <ul>
-        <% films.forEach((film) => { %>
-        <li>
-            <a href="/films/<%=film._id%>">
-           <%= film.title %>
-           <p><img src="<%= film.imageURL %>" alt=“<%= film.title %>” width ="200"></p>
-        </a>
-        </li>
-        <% }) %>
-  </ul>
-  
     <a href="/films/new">Add a New Film</a>
+
+    <main>
+      <div class = "main">
+        <% films.forEach((film) => { %>
+          
+        
+          <article class="indexplaceholderImg">
+          
+            <a href="/films/<%=film._id%>">
+          
+           <p><img src="<%= film.imageURL %>" alt=“<%= film.title %>” width ="250"></p>
+           <%= film.title %>
+          <p> <%= film.yearReleased %> </p>
+        </a>
+      </article>
+      
+        <% }) %>
+      
+    </main>
+  
+  </div>
   </body>
 </html>

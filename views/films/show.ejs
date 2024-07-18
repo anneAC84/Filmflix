@@ -10,18 +10,62 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    <h1><%= film.title %></h1>
+    <div class="show-body">
     <a href="/films/<%=film._id%>/edit" >
+
+
+      <div class="edit-button">
       <button>Edit Film</button>
+      </div>
     </a>
+
+
+    <div class="show-container">
+     
+      <div class="show-image">
+   
+    <p><img src="<%= film.imageURL %>" alt=“<%= film.title %>” width ="400"></p>
+  </div>
+
+  <div class="show-details">
+    <h1><%= film.title %></h1>
+    <p><strong>Year Released</strong>: <%= film.yearReleased %></p>
+    <p><strong>Main Actors</strong>: <%= film.mainActors %></p>
+    <p><strong>Description</strong>: <%= film.description %></p>
+
+    <h2>Favorites</h2>
+    <p>Liked by <%= film.favoritedByUsers.length %> people.</p>
+    <%if (userHasFavorited) { %>
+      <p>You have liked this Film</p>
+    
+    
+      <form
+        action="/films/<%= film._id %>/favorited-by/<%= user._id %>?_method=DELETE"
+        method="POST"
+      >
+      <div class="unlike-button">
+      <button type="submit">Unlike it</button>
+      </form>
+    </div>
+      <% } else { %>
+    
+    <form
+      action="/films/<%= film._id %>/favorited-by/<%= user._id %>"
+      method="POST"
+    >
+    <div class="likeIt-button">
+      <button type="submit">Like it!</button>
+    </form>
+    </div>
+    <% } %>
+
+
+
+
+  </div>
+  </div>
   
-    
-    <p><img src="<%= film.imageURL %>" alt=“<%= film.title %>” width ="300"></p>
-    <p>Year Released: <%= film.yearReleased %></p>
-    <p>Main Actors: $<%= film.mainActors %></p>
-    <p>Description: <%= film.description %></p>
-    
-<h2>Reviews</h2>
+ <!-- <h2>Reviews</h2>
   <form action="/films/<%=film._id%>/reviews" method="POST">
     <label for="content-textarea">Review:</label>
     <textarea name="content" id="content-textarea"></textarea>
@@ -33,41 +77,26 @@
 <option value="4">4</option>
 <option value="5" selected>5</option>
 
-    </select>
-    <button type="submit">Add Review</button>
-  </form>
+    </select> -->
+
+    <div class="show-button">
+    <!--<button type="submit">Add Review</button> </div>
+  </form>-->
     
     <% if (film.owner._id.equals(user._id)) { %>
         <form action="/films/<%=film._id%>?_method=DELETE" method="POST">
 
-            <button type="submit">Delete Film</button>
+          <div class="delete-button">
+           <button type="submit">Delete Film</button>
+          
         </form>
-        
+      </div> 
+
+    </div>
 
     <% } %>
 
-<h2>Favorites</h2>
-<p>Liked by <%= film.favoritedByUsers.length %> people.</p>
-<%if (userHasFavorited) { %>
-  <p>You have liked this Film</p>
 
-
-  <form
-    action="/films/<%= film._id %>/favorited-by/<%= user._id %>?_method=DELETE"
-    method="POST"
-  >
-    <button type="submit">Unlike it</button>
-  </form>
-
-  <% } else { %>
-
-<form
-  action="/films/<%= film._id %>/favorited-by/<%= user._id %>"
-  method="POST"
->
-  <button type="submit">Like it!</button>
-</form>
-<% } %>
-
+  
   </body>
 </html>

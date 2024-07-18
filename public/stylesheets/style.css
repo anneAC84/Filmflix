@@ -7,7 +7,7 @@ body {
     flex-direction:column;
     height: 100vh;
     width: 100vw;
-    background-color: #9ac2ef;
+    background-color: #111112;
     box-sizing: border-box;
   }
 
@@ -39,47 +39,40 @@ body {
 .main-header2 {
     font-size: 70px;
 }
-  .auth-links {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 80px 0 0;
-    height: 100%;
-    font-size: 30px
-  }
+
+.signup-link,
+.sign-in-link {
+  text-decoration: none;
+  font-size: 1.5em;
+  padding: 8px 0;
+  border-radius: 25px;
+  width: 10em;
+  text-align: center;
   
-  .signup-link,
-  .signin-link {
-    text-decoration: none;
-    font-size: 1.5em;
-    padding: 8px 0;
-    border-radius: 25px;
-    width: 10em;
-    text-align: center;
-  }
+}
   
-  .signup-link {
-    background-color: #ce4866;
-    color: white;
-    margin: 0 0 20px 0;
+ .signup-link {
+    
+    color:beige;
+   
   }
   
   .signup-link:hover {
-    background-color: #ff5378;
+    text-decoration:underline
   }
   
-  .signin-link {
-    background-color: #f6e7e7;
-    color: #1c2e5b;
-    margin: 20px 0 0 0;
+  .sign-in-link {
+     color:#d8dbe6;
+    
   }
   
-  .signin-link:hover {
-    background-color: #ffffff;
+  .sign-in-link:hover {
+
+    text-decoration:underline
+   
   }
 
-.signin-container {
+.sign-in-container {
 
     min-height: 600px;
    min-width:400px;
@@ -87,9 +80,6 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 4px;
     box-sizing: border-box;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -111,7 +101,6 @@ border: 0;
 fill: currentColor;
 position: relative;
 transition-duration: 250ms;
-transition-property: background-color, border-color;
 transition-timing-function: cubic-bezier(0.9, 0, 0.51, 1);
 vertical-align: text-top;
 width: 100%;
@@ -124,7 +113,6 @@ background: rgb(65, 110, 147);
 cursor: pointer;
 color: rgb(255, 255, 255);
 text-rendering: auto;
-    
 letter-spacing: normal;
 word-spacing: normal;
 line-height: normal;
@@ -180,6 +168,160 @@ label {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 4px;
     box-sizing: border-box;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0;
+    padding-bottom: 30px;
+    width: 30%;
+    gap: 16px;
+    margin-left:30%;
+    margin-top:5%;
+
+}
+
+.signup-body{
+
+    background-image: url('https://wallpapercave.com/wp/wp1945909.jpg');
+    
+    background-size: cover;
+}
+
+.sign-in-body {
+    background-image: url('https://wallpapercave.com/wp/4wQF64g.jpg');
+    background-size: cover;
+}
+
+.films-link {
+    color:#d8dbe6;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 60px;
+}
+
+article {
+    
+    text-align: center;
+}
+    
+article:hover {
+        
+        color: black;
+}
+article:active {
+    
+    font-display: rgb(52, 165, 112);
+}
+
+
+
+
+     
+
+
+.show-container {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.show-details {
+    
+        text-align:justify;
+        margin: 10px 0;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 10px;
+        margin-inline-end: 0px;
+        unicode-bidi: isolate;
+        max-width: 500px;
+        margin: auto 50px;
+    }
+
+    .show-body {
+        background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/04/Backgrounds-space-wallpaper-HD.jpg');
+    }
+   
+.show-image {
+
+    max-width: 100%;
+    height: 400px;
+    border-radius: 10px;
+
+}
+
+
+.edit-container {
+
+    min-height: 600px;
+    min-width:400px;
+     padding: 100px 68px;
+     background-color: rgba(0, 0, 0, 0.7);
+     border-radius: 4px;
+     box-sizing: border-box;
+     display: flex;
+     -webkit-flex-direction: column;
+     -ms-flex-direction: column;
+     flex-direction: column;
+     margin: 0;
+     padding-bottom: 30px;
+     width: 30%;
+     gap: 16px;
+     margin-left:30%;
+     margin-top:5%;
+
+
+
+}
+
+
+.editfilmbody {
+    background-image: url('https://besthqwallpapers.com/Uploads/25-2-2021/157484/4k-filmstrip-textures-vector-backgrounds-grunge-backgrounds-cinematograph.jpg');
+}
+
+.edit-button, .delete-button, .unlike-button, .likeIt-button {   
+margin-top:10%;
+width: 10%;
+font-size: 1rem;
+min-height: 1.5rem;
+border-radius: 0.25rem;
+background: rgb(65, 110, 147);
+cursor: pointer;
+color: rgb(255, 255, 255);
+padding-block: 1px;
+padding-inline: 0.5px;
+   
+}
+
+.index-links {
+    text-decoration: none;
+    margin: 0 15px;
+    color: #d8dbe6;
+    font-weight: bold;
+  }
+  
+  .index-links:hover {
+
+  
+    color: white;
+  }
+
+  .new {
+    min-height: 600px;
+   min-width:400px;
+    padding: 100px 68px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    box-sizing: border-box;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -193,5 +335,15 @@ label {
     gap: 16px;
     margin-left:30%;
     margin-top:5%;
+    color: white;
+  }
 
+.new-body {
+    background-image:url('//hdqwalls.com/wallpapers/2016-deadool-movie-new.jpg');
+   
 }
+
+.filmIndex-body {
+    background-image: url('https://images.hdqwalls.com/download/movie-wall-e-ad-3840x2160.jpg');
+}
+  

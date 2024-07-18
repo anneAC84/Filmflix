@@ -7,7 +7,11 @@
     <title>Add a New Film</title>
   </head>
   <body>
+
+    <div class="new-body">
     <%- include('../partials/_navbar.ejs') %>
+    
+    <div class="new">
     <h1>Add a New Film!</h1>
 
     <form action="/films"method="POST">
@@ -25,8 +29,10 @@
 
         <% if (typeof errorMessage !== 'undefined') { %>
            <p class="error"> <%= errorMessage %></p>
+          </div>
+
        <% } %>
       </form>
-   
+   </div>
   </body>
 </html>

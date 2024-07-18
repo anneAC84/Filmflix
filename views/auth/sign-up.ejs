@@ -6,7 +6,13 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Sign Up</title>
   </head>
+
+
+
   <body>
+    
+    <div class="signup-body">
+
     <%- include('../partials/_navbar.ejs') %>
     <div class="signup-container">
 
@@ -20,9 +26,11 @@
       <input type="password" name="confirmPassword" id="confirmPassword" required />
       <button type="submit">Sign up</button>
     </form>
-  </div>
+  
     <div class="signup-container2">
-    <p>Aready have an account? <a href="/auth/sign-in">Sign in</a></p>
+    <p>Aready have an account? <a class="sign-in-link" href="/auth/sign-in">Sign in</a></p>
   </div>
+</div>
+</div>
   </body>
 </html>

@@ -9,25 +9,37 @@
  
 
     <body class="index-body">
-      <p> <a href="/auth/sign-up">Sign-up</a>  <a href="/auth/sign-in">Sign-in</a> <a href="/films">Browse Films</a>
       
+      <p> 
+        <div class="index-links">
+        <a class="signup-link" href="/auth/sign-up">Sign-up</a>
+          <a class="sign-in-link" href="/auth/sign-in">Sign-in</a> 
+          <a class="films-link" href="/films">Browse Films</a>
+        </div>
+      </p>
+    
+        </div>
         
       <div section class="text-container">
    
     
     <% if (user) { %>
         <h1 class="main-header2">Welcome to Filmflix, <%= user.username %>!</h1>
+
+    <div class="index-links">
+        <a class="films-link" href="/films">Browse Films</a>
+    </div>
         <p><a href="/auth/sign-out">Sign out</a></p>
         <% } else { %>
         </section>
         
         <section class="body-container">
-          
+
         <p class="main-header"></h1>Welcome to Filmflix!</h1></p>
             <p class="subheader"> A film app that allows users to like and share films</p>
             <div class="auth-links">
-            <p> <a href="/auth/sign-up">Sign up</a> now to like films!</p>
-            <p>Already have an account? <a href="/auth/sign-in">Sign in</a></p>
+            <p> <a class="signup-link" href="/auth/sign-up">Sign up</a> now to like films!</p>
+            <p>Already have an account? <a class="sign-in-link" href="/auth/sign-in">Sign in</a></p>
             <% } %>
           </section>
           </div>

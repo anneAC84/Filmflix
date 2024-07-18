@@ -1,12 +1,24 @@
 <!-- partials/_navbar.ejs -->
 
+<link rel="stylesheet" href="/stylesheets/partials.css" />
+
 <nav>
     <% if (user) { %>
-    <a href="/films">View all Films</a>
-    <a href="/auth/sign-out">Sign Out</a>
+      <div class ="navbar">
+        <div class ="navfilms-links"> </div>
+    <a class="filmslink" href="/films">View all Films</a>
+    <div class="navsignout-links">
+    <a class="signoutlink" href="/auth/sign-out">Sign Out</a>
+  </div>
+</div>
+
     <% } else { %>
-    <a href="/auth/sign-up">Sign Up</a>
-    <a href="/auth/sign-in">Sign In</a>
+      <div class ="navbar">
+      <div class ="nav-links">
+    <a class="signuplink" href="/auth/sign-up">Sign Up</a>
+    <a class="signinlink" href="/auth/sign-in">Sign In</a>
+  </div>
+</div>
     <% } %>
   </nav>
   
