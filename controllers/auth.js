@@ -59,7 +59,7 @@ if (!userInDatabase) {
     if (!validPassword) {
         console.log('User exists but password did not match')
         return res.send('Login failed. Please try again.');
-        
+        res.redirect("/sign-in")
   }
 // Add username to session user
   req.session.user = {

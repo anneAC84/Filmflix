@@ -13,16 +13,6 @@
 
     <div class="filmIndex-body">
     
-  <header>
-
-    
-     <form action id="/films"method="Search">
-      <input type="text" name="title" id="title" placeholder="Search" required>
-      <button type="submit">Search</button>
-      
-    </form>
-  </header>
-  
     <%- include('../partials/_navbar.ejs') %> 
     <h1>Browse all Films</h1>
 
@@ -48,5 +38,8 @@
     </main>
   
   </div>
+  <% if (typeof message !== 'undefined') { %>
+    <p><%= message %></p>
+    <% } %>
   </body>
 </html>

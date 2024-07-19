@@ -94,7 +94,7 @@ router.delete('/:filmId', isSignedIn, async (req, res) => {
         }
     } catch (error) {
         console.log(error)
-        res.redirect('/')
+        res.render('/')
     }
 })
 //edit route
@@ -105,7 +105,7 @@ router.get('/:filmId/edit', isSignedIn, async (req, res) => {
     if (film.owner.equals(req.session.user._id)) {
     res.render('films/edit.ejs', {film})
     } else {
-   res.redirect(`/films/${film._id}`)
+    res.render('error',{errorMessage: 'You do not have permission to edit this Film.'})
     } 
 } catch (error) {
         console.log(error)
@@ -125,14 +125,11 @@ router.put('/:filmId', isSignedIn, async (req,res) => {
             res.redirect(`/films/${req.params.filmId}`)
         } else {
             // return an error message
-            res.send('You do not have permission to update this Film.')
+            res.render('error',{errorMessage: 'You do not have permission to update this Film.'})
         }
     } catch (error) {
     console.log(error)
-    res.redirect('/films')
-
-
-    }
+   }
 })
 
 //favorite route

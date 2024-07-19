@@ -13,8 +13,7 @@
     <div class="show-body">
     <a href="/films/<%=film._id%>/edit" >
 
-
-      <div class="edit-button">
+    <div class="edit-button">
       <button>Edit Film</button>
       </div>
     </a>
@@ -38,30 +37,25 @@
     <%if (userHasFavorited) { %>
       <p>You have liked this Film</p>
     
-    
       <form
         action="/films/<%= film._id %>/favorited-by/<%= user._id %>?_method=DELETE"
-        method="POST"
-      >
+        method="POST">
+
       <div class="unlike-button">
       <button type="submit">Unlike it</button>
       </form>
-    </div>
+        </div>
       <% } else { %>
     
     <form
       action="/films/<%= film._id %>/favorited-by/<%= user._id %>"
-      method="POST"
-    >
+      method="POST">
+
     <div class="likeIt-button">
       <button type="submit">Like it!</button>
     </form>
     </div>
     <% } %>
-
-
-
-
   </div>
   </div>
   

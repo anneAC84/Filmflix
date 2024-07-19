@@ -24,22 +24,6 @@ body {
     word-spacing: 5px;
   }
 
-.text-container {
-    text-align: center;
-}
-
-.main-header {
-    font-size: 70px;
-}
-
-.subheader {
-    font-size: 30px; 
-}
-
-.main-header2 {
-    font-size: 70px;
-}
-
 .signup-link,
 .sign-in-link {
   text-decoration: none;
@@ -207,6 +191,7 @@ label {
 article {
     
     text-align: center;
+    font: white
 }
     
 article:hover {
@@ -245,6 +230,7 @@ article:active {
         unicode-bidi: isolate;
         max-width: 500px;
         margin: auto 50px;
+        color: white
     }
 
     .show-body {
@@ -302,6 +288,11 @@ padding-inline: 0.5px;
    
 }
 
+.unlike-button {
+    width: 40%;
+    color: rgb(77, 178, 185); ;
+}
+
 .index-links {
     text-decoration: none;
     margin: 0 15px;
@@ -347,3 +338,48 @@ padding-inline: 0.5px;
     background-image: url('https://images.hdqwalls.com/download/movie-wall-e-ad-3840x2160.jpg');
 }
   
+.signup-container2 {
+    color: white;
+}
+
+
+.h1signup {
+color: white;
+text-align: center;
+
+}
+
+.sign-in-container2 {
+    color: white;
+}
+
+.h1sign-in-container {
+    color: white;
+    text-align: center;
+    
+    }
+
+ .error {
+    color: red;
+    font-size: .9rem;
+ }  
+
+
+.errorbody {
+
+  background-image: url('https://www.searchenginejournal.com/wp-content/uploads/2020/08/404-pages-sej-5f3ee7ff4966b-1520x800.png');
+ }  
+
+ .errorbutton {
+    margin-top:5%;
+    width: 10%;
+    font-size: 1rem;
+    min-height: 1.5rem;
+    border-radius: 0.25rem;
+    background: rgb(65, 110, 147);
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    padding-block: 1px;
+    padding-inline: 0.5px;  
+ }
+

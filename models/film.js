@@ -1,18 +1,10 @@
 const mongoose = require('mongoose')
 
-const reviewSchema = new mongoose.Schema({
-  content: {
-    type:String, 
-    required: true 
-  },
-  rating: { 
-  type: Number, min: 1, max: 5, default: 5},
-})
-
 const filmSchema = new mongoose.Schema({
     title: {
         type:String,
-        required: true,
+        required: [true, 'Name is required'],
+        unique: true
     },
   yearReleased: {
     type: Number,
@@ -30,7 +22,7 @@ const filmSchema = new mongoose.Schema({
  imageURL: {
     
   type: String,
-    required: true,
+    required: [true,'URL is required']
    
  }, 
 
@@ -47,10 +39,7 @@ const filmSchema = new mongoose.Schema({
     ref: 'User',
   }],
 
-  reviews: [reviewSchema],
- 
- 
-
+  
 })
 
 const Film = mongoose.model('Film', filmSchema);
