@@ -92,9 +92,13 @@ color:rgb(190, 226, 224);
     
 }
 
+.sign-out {
+    color:#acb7df;
+}
+
 button {
 
-border: 0;
+border: 5px;
 fill: currentColor;
 position: relative;
 transition-duration: 250ms;
@@ -194,9 +198,7 @@ label {
     color:#acb7df;
 }
 
-.sign-out {
-    color:#acb7df;
-}
+
 
 .main {
     display: flex;

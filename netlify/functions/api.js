@@ -5,25 +5,23 @@ require('dotenv').config()
 const express = require('express');
 
 
-const morgan = require('../../morgan')
-const mongoose = require('../../mongoose')
-const methodOverride = require('../../method-override')
-const session = require('../../express-session');
-const MongoStore = require("../../connect-mongo");
+const morgan = require('morgan')
+const mongoose = require('mongoose')
+const methodOverride = require('method-override')
+const session = require('express-session');
+const MongoStore = require("connect-mongo");
 
 
-const passUserToView = require('../.././middleware/pass-user-to-view.js')
+const passUserToView = require('../../middleware/pass-user-to-view.js')
 
 // Controllers / Routes
-const authController = require("../.././controllers/auth.js");
-const filmsController = require('../.././controllers/films');
+const authController = require("../../controllers/auth.js");
+const filmsController = require('../../controllers/films.js');
 
 
 
 // Constants
 const app = express();
-const port = process.env.PORT || 3000
-const path = require('path');
 
 //Middleware
 
@@ -68,23 +66,22 @@ app.get('/', async (req, res) => {
 
   app.use('/films', filmsController);
 
+      // 404
+app.get('*', (req,res)=> {
+    res.render('404.ejs')
+}) 
+
 
 // Connections
 const connect = async () => {
     try {
         await mongoose.connect(process.env.MONGODB_URI)
         console.log('Database connection established')
-        
 
-    // 404
-app.get('*', (req,res)=> {
-    res.render('404.ejs')
-}) 
-
-
-
-module.exports.handler = serverless(app)
     } catch (error) {
         console.log(error)
     }
 }
+connect()
+
+module.exports.handler = serverless(app)
