@@ -7,9 +7,9 @@ const passUserToView = require('../middleware/pass-user-to-view.js')
 
 //Model
 const Film = require('../models/film');
-const { route } = require('./auth');
-const { findOneAndUpdate } = require('../models/user.js');
-const { isObjectIdOrHexString } = require('mongoose');
+const {route} = require('./auth');
+const {findOneAndUpdate} = require('../models/user.js');
+const {isObjectIdOrHexString} = require('mongoose');
 
 //routes/controllers
 router.get('/', async (req, res) => {
@@ -34,8 +34,6 @@ router.get('/new',isSignedIn, (req, res) => {
     }
 
 })
-
-
 
 router.post('/', isSignedIn, async (req, res) => {
     try {
@@ -133,7 +131,6 @@ router.put('/:filmId', isSignedIn, async (req,res) => {
 })
 
 //favorite route
-
 router.post('/:filmId/favorited-by/:userId', isSignedIn, async (req, res) => {
     try {
         const filmId = req.params.filmId
@@ -149,17 +146,16 @@ router.post('/:filmId/favorited-by/:userId', isSignedIn, async (req, res) => {
   });
 
   // unfavorite delete route
-
-  // controllers/listings.js
-
 router.delete('/:filmId/favorited-by/:userId', async (req, res) => {
     try {
         const filmId = req.params.filmId
         const film = await Film.findByIdAndUpdate(filmId, {
             $pull: { favoritedByUsers: req.session.user._id }
         })
+        req.session.message = "Film was successfully deleted."
         res.redirect(`/films/${filmId}`);
       } catch (error) {
+        req.session.message = err.message
         console.log(error);
         res.redirect('/');
       }

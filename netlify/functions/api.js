@@ -1,18 +1,22 @@
 // Imports
+const serverless = require('serverless-http')
 require('dotenv').config()
+
 const express = require('express');
-const morgan = require('morgan')
-const mongoose = require('mongoose')
-const methodOverride = require('method-override')
-const session = require('express-session');
-const MongoStore = require("connect-mongo");
 
 
-const passUserToView = require('./middleware/pass-user-to-view.js')
+const morgan = require('../../morgan')
+const mongoose = require('../../mongoose')
+const methodOverride = require('../../method-override')
+const session = require('../../express-session');
+const MongoStore = require("../../connect-mongo");
+
+
+const passUserToView = require('../.././middleware/pass-user-to-view.js')
 
 // Controllers / Routes
-const authController = require("./controllers/auth.js");
-const filmsController = require('./controllers/films');
+const authController = require("../.././controllers/auth.js");
+const filmsController = require('../.././controllers/films');
 
 
 
@@ -26,7 +30,7 @@ const path = require('path');
 app.use(express.urlencoded({ extended: true}))
 app.use(methodOverride('_method'))
 app.use(morgan('dev'))
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static("public"));
 app.set('view engine', 'ejs')
 app.use(
     session({
@@ -78,11 +82,9 @@ app.get('*', (req,res)=> {
 }) 
 
 
-        app.listen(port, () => {
-            console.log(`Server listening on port ${port}`)
-        })
+
+module.exports.handler = serverless(app)
     } catch (error) {
         console.log(error)
     }
 }
-connect()

@@ -10,6 +10,21 @@ body {
     background-color: #111112;
     box-sizing: border-box;
   }
+  .main-header {
+    font-weight: bold;
+    color: white;
+    font-size: 5.6em;
+    margin: 20px 20px 0 20px;
+  }
+  
+  .subheader {
+    margin: 0 20px 0 20px;
+    font-size: 1.4em;
+  }
+  
+  .text-container {
+    text-align: center;
+  }
 
   .index-body {
     
@@ -37,7 +52,7 @@ body {
   
  .signup-link {
     
-    color:beige;
+color:rgb(190, 226, 224);
    
   }
   
@@ -46,7 +61,7 @@ body {
   }
   
   .sign-in-link {
-     color:#d8dbe6;
+     color:#b8e5ec;
     
   }
   
@@ -79,9 +94,7 @@ body {
 
 button {
 
-
 border: 0;
-
 fill: currentColor;
 position: relative;
 transition-duration: 250ms;
@@ -178,7 +191,11 @@ label {
 }
 
 .films-link {
-    color:#d8dbe6;
+    color:#acb7df;
+}
+
+.sign-out {
+    color:#acb7df;
 }
 
 .main {
@@ -269,7 +286,6 @@ article:active {
 
 }
 
-
 .editfilmbody {
     background-image: url('https://besthqwallpapers.com/Uploads/25-2-2021/157484/4k-filmstrip-textures-vector-backgrounds-grunge-backgrounds-cinematograph.jpg');
 }
@@ -335,9 +351,14 @@ padding-inline: 0.5px;
 }
 
 .filmIndex-body {
-    background-image: url('https://images.hdqwalls.com/download/movie-wall-e-ad-3840x2160.jpg');
-}
-  
+    background-image: url('https://cdn.wallpapersafari.com/25/63/hPzxVo.jpg');
+    background-size:cover;
+} 
+ 
+.hIndex {
+    color: rgb(218, 228, 236);
+ }
+
 .signup-container2 {
     color: white;
 }
