@@ -1,26 +1,90 @@
 ![alt text](image.png)
 
-The name of my app is called Filmflix.
+Project Overview
 
-It is an app where you are able to upload and browse movies and interact with other users by liking films. As a none logged in user, you are able to to view movies, as a login in user you are able to view movies, create, update and delete films.  You are also able to 'like' films.
+Filmflix is a dynamic movie management application designed to provide users with a platform to explore, upload, and interact with films. Users can view a comprehensive list of movies, create new entries, edit existing ones, and engage with the content by liking films. Non-registered users have the ability to browse movies, while registered users gain additional privileges such as creating, updating, deleting, and liking movies. The intuitive interface ensures an enjoyable and seamless browsing experience for all users.
 
+Future Enhancements include adding features for logged-in users to review films, implementing a search function to filter movie listings, and integrating external links for watching trailers.
 
-To enhance the app there are many things I would like to add, for instance the ability for logged in users to review a film a serch function and the ability to create a link to watch trailers.
+### Live Demo
 
-https://trello.com/c/N2uH8p3s/9-erd
-
-https://excalidraw.com/
-
-https://trello.com/b/evg0pD3r/my-men-stack-crud-app-project
-
-https://github.com/anneAC84/Filmflix.git
-
-https://main--filmflixcas.netlify.app/
+Explore the live version of the application: [**Filmflix**](https://main--filmflixcas.netlify.app/)
 
 
+## Project Links
 
-moongoose
-css
-HTML
-MONGODB
-Express
+- [**Excalidraw**](https://excalidraw.com/)
+- [**Trello Board**](https://trello.com/invite/b/669002417cbb49b0fe3bd0ce/ATTI265c76e845aa32031db6729c8704b8b54023F9C3/my-men-stack-crud-app-project)
+- [**GitHub Repository**](https://github.com/anneAC84/Filmflix.git)
+
+
+Features
+User Authentication & Authorization:
+
+Secure user registration and login system.
+Only logged-in users can create, edit, and delete movie entries.
+Movie Management:
+
+View all movies in a structured and responsive format.
+Logged-in users can upload new films, edit details, or delete entries.
+User Interaction:
+
+Logged-in users can like movies and engage with the content.
+Responsive Design:
+
+The app is fully responsive, providing a seamless experience across desktops, tablets, and mobile devices.
+
+Technologies Used
+
+Frontend:
+
+HTML, CSS
+JavaScript
+
+Backend:
+
+Node.js
+Express.js
+Mongoose (for MongoDB interactions)
+MongoDB (NoSQL Database)
+
+
+Deployment:
+
+Netlify 
+
+
+Installation and Setup
+
+Clone the repository:
+git clone https://github.com/anneAC84/Filmflix.git
+
+Navigate to the project directory:
+cd Filmflix
+
+Install the dependencies:
+npm install
+
+Create a .env file in the root directory and add your MongoDB connection string, along with other environment variables:
+MONGODB_URI=<Your-MongoDB-URI>
+
+
+Run the application locally:
+npm start
+Open your browser and navigate to http://localhost:3000 to view the app.
+
+
+Contributing
+If you would like to contribute to Filmflix, feel free to submit a pull request. Contributions, issues, and feature requests are welcome!
+
+Future Enhancements
+User Reviews: Allow logged-in users to review and rate films.
+Search Functionality: Implement a search bar to filter movies by title, genre, or director.
+Trailer Links: Add an option to include YouTube or external links to movie trailers.
+Improved User Profiles: Enable users to view a list of movies they have uploaded, liked, or reviewed.
+
+Contact
+For any inquiries or feedback, feel free to reach out:
+
+Email: anneoke84@gmail.com
+LinkedIn: /in/anne-oke/
