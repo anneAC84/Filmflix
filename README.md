@@ -18,7 +18,6 @@
 Explore the live version of the application: [Filmflix](https://main--filmflixcas.netlify.app/)
 
 ## Project Links
-- [Excalidraw](https://excalidraw.com/)
 - [Trello Board](https://trello.com/invite/b/669002417cbb49b0fe3bd0ce/ATTI265c76e845aa32031db6729c8704b8b54023F9C3/my-men-stack-crud-app-project)
 - [GitHub Repository](https://github.com/anneAC84/Filmflix.git)
 
