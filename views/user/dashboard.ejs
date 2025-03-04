@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css"> <!-- Ensure this file exists -->
+</head>
+<body>
+    <!-- Navbar at the Top -->
+    <header class="navbar">
+        <h1>Welcome, <%= user.username %>! 🎬</h1>
+        <nav>
+            <ul class="dashboard-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/films">Browse Films</a></li>
+                <li><a href="/films/my-films">Manage My Films</a></li>
+                <li><a href="/films/watchlist">My Watchlist</a></li>
+                <li><a href="/auth/sign-out" class="logout-btn">Log Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-container">
+        <section class="dashboard-header">
+            <h2>My Dashboard</h2>
+            <p>Welcome to your personalized space where you can manage your films and watchlist.</p>
+        </section>
+
+        <section class="dashboard-content">
+            <!-- Card for Manage Films -->
+            <div class="card">
+                <h3>Manage Films</h3>
+                <p>Manage the films you have added or favorited.</p>
+                <a href="/films/my-films">Go to My Films</a>
+            </div>
+
+            <!-- Card for Watchlist -->
+            <div class="card">
+                <h3>My Watchlist</h3>
+                <p>View the films you have saved for later.</p>
+                <a href="/films/watchlist">Go to Watchlist</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer at the Bottom -->
+    <footer class="dashboard-footer">
+        <p>FilmFlix &copy; <%= new Date().getFullYear() %></p>
+    </footer>
+</body>
+</html>

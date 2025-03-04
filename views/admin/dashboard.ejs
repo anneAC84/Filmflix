@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css"> <!-- Link to your updated CSS -->
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/films/add">Add a New Film</a>
+        <a href="/films/manage">Manage Films</a>
+        <a href="/auth/sign-out">Logout</a>
+    </div>
+
+    <!-- Admin Sidebar -->
+    <div class="admin-container">
+        <nav class="admin-sidebar">
+            <ul>
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/films/add">Add a New Film</a></li>
+                <li><a href="/films/manage">Manage Films</a></li>
+                <li><a href="/auth/sign-out">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="admin-content">
+            <div class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <p>Welcome, Admin <%= user.username %>!</p>
+            </div>
+
+            <!-- Admin Actions Section -->
+            <h2>Admin Actions</h2>
+            <div class="dashboard-nav">
+                <a href="/films/add">Add a New Film</a>
+                <a href="/films/manage">Manage Films</a>
+                <a href="/auth/sign-out">Logout</a>
+            </div>
+
+            <h2>Manage Films</h2>
+            <div class="dashboard-content">
+                <div class="film-list">
+                    <% films.forEach(film => { %>
+                        <div class="card">
+                            <h3><%= film.title %></h3>
+                            <p><%= film.description %></p>
+
+                            <!-- Admin controls: Edit & Delete -->
+                            <a href="/films/<%= film._id %>/edit" class="edit-btn">Edit</a>
+
+                            <!-- Delete Film Form (using method override for DELETE) -->
+                            <form action="/films/<%= film._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this film?')">Delete</button>
+                            </form>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <div class="dashboard-footer">
+        <p>© 2025 Your Company. All rights reserved.</p>
+    </div>
+
+</body>
+</html>

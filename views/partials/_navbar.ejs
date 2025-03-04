@@ -1,24 +1,44 @@
-<!-- partials/_navbar.ejs -->
-
 <link rel="stylesheet" href="/stylesheets/partials.css" />
 
-<nav>
-    <% if (user) { %>
-      <div class ="navbar">
-        <div class ="navfilms-links"> </div>
-    <a class="filmslink" href="/films">View all Films</a>
-    <div class="navsignout-links">
-    <a class="signoutlink" href="/auth/sign-out">Sign Out</a>
+<nav class="navbar">
+  <!-- Logo Section -->
+  <div class="navbar-logo">
+    <a href="/" class="logo-link">
+      <img src="/images/filmflixlogo.jpeg" alt="Filmflix Logo" class="logo" />
+      <span class="logo-text">Filmflix</span>
+    </a>
   </div>
-</div>
 
+  <!-- Navbar Links -->
+  <div class="navbar-links">
+    <a href="/" class="navbar-link home-link">Home</a>
+    <% if (user) { %>
+      <a href="/user/dashboard" class="navbar-link">My Dashboard</a>
+      <a href="/auth/sign-out" class="navbar-link">Sign Out</a>
     <% } else { %>
-      <div class ="navbar">
-      <div class ="nav-links">
-    <a class="signuplink" href="/auth/sign-up">Sign Up</a>
-    <a class="signinlink" href="/auth/sign-in">Sign In</a>
-  </div>
-</div>
+      <a href="/auth/sign-in" class="navbar-link">Sign In</a>
+      <a href="/auth/sign-up" class="navbar-link">Sign Up</a>
+      <a href="/admin/sign-in" class="navbar-link">Admin Sign In</a>
     <% } %>
-  </nav>
-  
+  </div>
+
+  <!-- Burger Menu for Mobile -->
+  <div class="burger-menu" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+</nav>
+
+<!-- Dropdown for Mobile -->
+<div class="dropdown-menu hidden">
+  <a href="/" class="dropdown-link">Home</a>
+  <% if (user) { %>
+    <a href="/auth/sign-out" class="dropdown-link">Sign Out</a>
+    <a href="/user/dashboard" class="navbar-link">My Dashboard</a>
+  <% } else { %>
+    <a href="/auth/sign-in" class="dropdown-link">Sign In</a>
+    <a href="/auth/sign-up" class="dropdown-link">Sign Up</a>
+    <a href="/admin/sign-in" class="dropdown-link">Admin Sign In</a>
+  <% } %>
+</div>

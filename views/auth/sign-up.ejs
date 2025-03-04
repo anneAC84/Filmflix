@@ -4,35 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/partials.css" />
     <title>Sign Up</title>
   </head>
-
-
-
   <body>
-  
-    <div class="signup-body">
-    <%- include('../partials/_navbar.ejs') %>
-    <div class="signup-container">
+    <!-- Navbar should be outside auth-body -->
+    <%- include('../partials/_navbar.ejs', { showAuthLinks: false }) %>
 
-<div class="h1signup">
-    <h1>Create a new account</h1>
-  </div>
-
-    <form action="/auth/sign-up" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" required />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required />
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" required />
-      <button type="submit">Sign up</button>
-    </form>
-  
-    <div class="signup-container2">
-    <p>Aready have an account? <a class="sign-in-link" href="/auth/sign-in">Sign in</a></p>
-  </div>
-</div>
-</div>
+    <div class="auth-body">
+      <div class="auth-container">
+        <div class="auth-card">
+          <h1 class="auth-title">Join Filmflix!</h1>
+          <p class="auth-subtitle">Create an account and start your journey.</p>
+          <form action="/auth/sign-up" method="POST" class="auth-form">
+            <label for="username" class="auth-label">Username:</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="auth-input"
+              placeholder="Choose a username"
+              required
+            />
+            <label for="password" class="auth-label">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="auth-input"
+              placeholder="Create a password"
+              required
+            />
+            <label for="confirmPassword" class="auth-label">Confirm Password:</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              class="auth-input"
+              placeholder="Confirm your password"
+              required
+            />
+            <button type="submit" class="auth-button">Sign Up</button>
+          </form>
+          <p class="auth-footer">
+            Already have an account? <a href="/auth/sign-in" class="auth-link">Sign in</a>
+          </p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

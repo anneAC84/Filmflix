@@ -1,79 +1,193 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title><%= film.name %></title>
+    <title><%= film.title %></title>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+        color: #fff;
+      }
+
+      .show-body {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+      }
+
+      .show-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .show-image img {
+        border-radius: 15px;
+        max-width: 100%;
+        height: auto;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Larger shadow */
+        transition: transform 0.3s ease; /* Smooth zoom effect */
+      }
+
+      .show-image img:hover {
+        transform: scale(1.05); /* Slight zoom effect on hover */
+      }
+
+      .show-details p {
+        font-size: 1.3rem; /* Increase font size for better visibility */
+        margin: 12px 0;
+        line-height: 1.6; /* Improved line height for readability */
+      }
+
+      .show-details h1 {
+        font-size: 3rem; /* Increase font size slightly */
+        font-weight: bold; /* Make it bold for emphasis */
+        text-transform: uppercase; /* Add a slight uppercase for style */
+        color: #f39c12;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      .buttons-container {
+        margin-top: 30px; /* Increased top margin */
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Increased gap for better button spacing */
+      }
+
+      button {
+        background-color: #f39c12;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        border-radius: 8px; /* Slightly round corners */
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #e67e22;
+        transform: scale(1.05); /* Slightly larger hover effect */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+      }
+
+      .delete-button button {
+        background-color: #e74c3c;
+      }
+
+      .delete-button button:hover {
+        background-color: #c0392b;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Add shadow */
+      }
+
+      .likeIt-button button {
+        background-color: #2ecc71;
+      }
+
+      .likeIt-button button:hover {
+        background-color: #27ae60;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Add shadow */
+      }
+
+      .unlike-button button {
+        background-color: #9b59b6;
+      }
+
+      .unlike-button button:hover {
+        background-color: #8e44ad;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Add shadow */
+      }
+
+      footer {
+        text-align: center;
+        color: #bbb;
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #1a1a2e;
+        font-size: 1rem; /* Slightly bigger font */
+        border-top: 2px solid #f39c12; /* Add a subtle top border */
+      }
+    </style>
   </head>
   <body>
+    <!-- Include Navigation -->
     <%- include('../partials/_navbar.ejs') %>
 
+    <!-- Film Details Section -->
     <div class="show-body">
-    <a href="/films/<%=film._id%>/edit" >
-
-    <div class="edit-button">
-      <button>Edit Film</button>
-      </div>
-    </a>
-
-  <div class="show-container">
-      <div class="show-image">
-      
-      <p><img src="<%= film.imageURL %>" alt=“<%= film.title %>” width ="400"></p>
-  </div>
-
-  <div class="show-details">
-    <h1><%= film.title %></h1>
-    <p><strong>Year Released</strong>: <%= film.yearReleased %></p>
-    <p><strong>Main Actors</strong>: <%= film.mainActors %></p>
-    <p><strong>Description</strong>: <%= film.description %></p>
-
-    <h2>Favorites</h2>
-    <p>Liked by <%= film.favoritedByUsers.length %> people.</p>
-    <%if (userHasFavorited) { %>
-      <p>You have liked this Film</p>
-    
-      <form
-        action="/films/<%= film._id %>/favorited-by/<%= user._id %>?_method=DELETE"
-        method="POST">
-
-      <div class="unlike-button">
-      <button type="submit">Unlike it</button>
-      </form>
+      <div class="show-container">
+        <!-- Film Image -->
+        <div class="show-image">
+          <img src="<%= film.imageURL %>" alt="<%= film.title %>" />
         </div>
-      <% } else { %>
-    
-    <form
-      action="/films/<%= film._id %>/favorited-by/<%= user._id %>"
-      method="POST">
 
-    <div class="likeIt-button">
-      <button type="submit">Like it!</button>
-    </form>
+        <!-- Film Details -->
+        <div class="show-details">
+          <h1><%= film.title %></h1>
+          <p><strong>Year Released:</strong> <%= film.yearReleased %></p>
+          <p><strong>Main Actors:</strong> <%= film.mainActors %></p>
+          <p><strong>Description:</strong> <%= film.description %></p>
+          <h2>Favorites</h2>
+          <p>Liked by <%= film.favoritedByUsers.length %> people.</p>
+
+          <% if (user) { %>
+            <% if (userHasFavorited) { %>
+              <p>You have liked this Film</p>
+              <form
+                action="/films/<%= film._id %>/favorited-by/<%= user._id %>?_method=DELETE"
+                method="POST">
+                <div class="unlike-button">
+                  <button type="submit">Unlike it</button>
+                </div>
+              </form>
+            <% } else { %>
+              <form
+                action="/films/<%= film._id %>/favorited-by/<%= user._id %>"
+                method="POST">
+                <div class="likeIt-button">
+                  <button type="submit">Like it!</button>
+                </div>
+              </form>
+            <% } %>
+          <% } else { %>
+            <p>You must <a href="/auth/sign-in">log in</a> to like films.</p>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- Buttons: Edit and Delete -->
+      <div class="buttons-container">
+        <% if (user && (user.isAdmin || (film.owner && film.owner._id.equals(user._id)))) { %>
+          <!-- Edit Button -->
+          <a href="/films/<%= film._id %>/edit">
+            <button>Edit Film</button>
+          </a>
+
+          <form
+            action="/films/<%= film._id %>?_method=DELETE"
+            method="POST"
+            style="display: inline;">
+            <div class="delete-button">
+              <button type="submit">Delete Film</button>
+            </div>
+          </form>
+        <% } %>
+      </div>
     </div>
-    <% } %>
-  </div>
-  </div>
-  
-    <div class="show-button">
-    
-    
-    <% if (film.owner._id.equals(user._id)) { %>
-        <form action="/films/<%=film._id%>?_method=DELETE" method="POST">
 
-          <div class="delete-button">
-           <button type="submit">Delete Film</button>
-          
-        </form>
-      </div> 
-
-    </div>
-
-    <% } %>
-
-
-  
+    <!-- Footer -->
+    <footer>
+      <p>Filmflix &copy; 2024 | Your gateway to great films</p>
+    </footer>
   </body>
 </html>

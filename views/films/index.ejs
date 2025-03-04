@@ -1,5 +1,3 @@
-<!-- views/films/index.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,41 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>All Films</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+        color: #333;
+      }
+
+      .hIndex {
+        text-align: center;
+        padding: 20px 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+      }
+
+      .hIndex h1 {
+        margin: 0;
+        font-size: 2.5rem;
+      }
+
+      .add-film-btn {
+        display: inline-block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #6200ea;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .add-film-btn:hover {
+        background-color: #3700b3;
+      }
+
+      .films-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .film-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .film-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .film-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .film-info {
+        padding: 15px;
+        text-align: center;
+      }
+
+      .film-info h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #6200ea;
+      }
+
+      .film-info p {
+        margin: 5px 0 0;
+        color: #555;
+        font-size: 1rem;
+      }
+
+      .fetch-movies {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .fetch-movies-btn {
+        padding: 10px 20px;
+        background-color: #ff5722;
+        color: white;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .fetch-movies-btn:hover {
+        background-color: #e64a19;
+      }
+    </style>
   </head>
-  
-  <body class="filmIndex-body">
+  <body>
+    <!-- Include Navigation -->
+    <%- include('../partials/_navbar.ejs') %>
 
-    
-    <%- include('../partials/_navbar.ejs') %> 
-    
+    <!-- Header Section -->
     <div class="hIndex">
-    <h1>Browse all Films</h1>
-   </div>
+      <h1><%= title %></h1>
+    </div>
 
-    <a href="/films/new">Add a New Film</a>
+    <!-- Add Film Button -->
+    <% if (user) { %>
+      <div class="add-film">
+        <a href="/films/new" class="add-film-btn">Add a New Film</a>
+      </div>
+    <% } %>
 
+    <!-- Fetch Movies Button (Only visible for non-logged-in users) -->
+    <% if (!user) { %>
+      <div class="fetch-movies">
+        <form action="/films/fetch-movies" method="GET">
+          <button type="submit" class="fetch-movies-btn">Fetch Movies</button>
+        </form>
+      </div>
+    <% } %>
+
+    <!-- Film Grid -->
     <main>
-      <div class = "main">
+      <div class="films-container">
         <% films.forEach((film) => { %>
-          
-        
-          <article class="indexplaceholderImg">
-          
-            <a href="/films/<%=film._id%>">
-          
-           <p><img src="<%= film.imageURL %>" alt=“<%= film.title %>” width ="250"></p>
-           <%= film.title %>
-          <p> <%= film.yearReleased %> </p>
-        </a>
-      </article>
-      
+          <div class="film-card">
+            <a href="/films/<%= film._id %>">
+              <img src="<%= film.imageURL %>" alt="<%= film.title %>" />
+            </a>
+            <div class="film-info">
+              <h2><%= film.title %></h2>
+              <p>Released: <%= film.yearReleased %></p>
+            </div>
+          </div>
         <% }) %>
-      
+      </div>
     </main>
-  
-  </div>
-  <% if (typeof message !== 'undefined') { %>
-    <p><%= message %></p>
+
+    <% if (typeof message !== 'undefined') { %>
+      <p><%= message %></p>
     <% } %>
   </body>
 </html>

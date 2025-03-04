@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="/stylesheets/partials.css" />
-    <title>Sign In</title>
+    <title>Admin Sign In</title>
   </head>
 
   <body>
-    <!-- Navbar should be outside auth-body -->
+    <!-- ✅ Ensure correct include path for navbar -->
     <%- include('../partials/_navbar.ejs', { showAuthLinks: false }) %>
 
     <div class="auth-body">
       <div class="auth-container">
         <div class="auth-card">
-          <h1 class="auth-title">Welcome Back!</h1>
-          <p class="auth-subtitle">Sign in to continue exploring Filmflix.</p>
-          <form action="/auth/sign-in" method="POST" class="auth-form">
+          <h1 class="auth-title">Admin Sign In</h1>
+          <p class="auth-subtitle">Sign in to manage the admin dashboard.</p>
+
+          <!-- ✅ FIX: Corrected form action to match the route in admin.js -->
+          <form action="/admin/sign-in" method="POST" class="auth-form">
             <label for="username" class="auth-label">Username:</label>
             <input
               type="text"
@@ -27,6 +29,7 @@
               placeholder="Enter your username"
               required
             />
+
             <label for="password" class="auth-label">Password:</label>
             <input
               type="password"
@@ -36,11 +39,15 @@
               placeholder="Enter your password"
               required
             />
-            <% if (typeof errorMessage !== 'undefined') { %>
+
+            <!-- ✅ FIX: Ensure errorMessage does not break rendering -->
+            <% if (errorMessage) { %>
               <p class="auth-error"><%= errorMessage %></p>
             <% } %>
+
             <button type="submit" class="auth-button">Sign In</button>
           </form>
+
           <p class="auth-footer">
             Don’t have an account? <a href="/auth/sign-up" class="auth-link">Sign up</a>
           </p>

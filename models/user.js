@@ -12,8 +12,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isAdmin: {  // Add isAdmin field to the schema
+    type: Boolean,
+    default: false,  // Default to false, unless manually set
+  }
 
-  
 
 });
 

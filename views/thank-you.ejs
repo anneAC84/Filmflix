@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You</title>
+  <script>
+    // Redirect after a short delay
+    setTimeout(function() {
+      window.location.href = '<%= isAdmin ? "/admin/dashboard" : "/" %>';
+    }, 2000); // Redirect after 2 seconds
+  </script>
+</head>
+<body>
+  <h1>Thank you for signing up!</h1>
+  <p>You will be redirected shortly...</p>
+</body>
+</html>

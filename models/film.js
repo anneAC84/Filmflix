@@ -12,7 +12,7 @@ const filmSchema = new mongoose.Schema({
   },
  mainActors: {
     type: [String],
-    required: true,
+    required: false,
  },
   description: {
     type: String,
@@ -30,7 +30,7 @@ const filmSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
 
   },
 
@@ -38,6 +38,11 @@ const filmSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   }],
+
+  featured: {  // New field for featured movies
+    type: Boolean,
+    default: false
+  }
 
   
 })
