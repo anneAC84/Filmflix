@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
     let films, newReleases, topRated, featuredMovies;
     let title = "Browse All Films"; // Default title
 
-    if (req.session.user) {
+    if (process.env.NODE_ENV === "production" || req.session.user) {
         try {
             await fetchMovies();
         } catch (error) {
@@ -75,6 +75,10 @@ router.get('/', async (req, res) => {
 
         // Fetch top-rated movies (sorted by favorited users)
         topRated = await Film.find().sort({ favoritedByUsers: -1 }).limit(5);
+
+          // 🔹 Add this log to check if `featuredMovies` is being populated
+          console.log("Featured Movies:", featuredMovies);
+          console.log("Featured Movies Count:", featuredMovies ? featuredMovies.length : "undefined");
 
         res.render('films/index.ejs', {
             films,

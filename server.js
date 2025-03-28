@@ -119,6 +119,7 @@ app.use('/films', filmsController);
 // Connections
 const connect = async () => {
     try {
+        console.log("MongoDB URI in Production:", process.env.MONGODB_URI || "Not Set"); // 🔥 Debugging
         await mongoose.connect(process.env.MONGODB_URI);
         console.log('Database connection established');
         
@@ -126,7 +127,7 @@ const connect = async () => {
             console.log(`Server listening on port ${port}`);
         });
     } catch (error) {
-        console.log(error);
+        console.log("❌ MongoDB Connection Error:", error);
     }
 };
 connect();
