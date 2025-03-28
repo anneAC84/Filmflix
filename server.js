@@ -94,11 +94,17 @@ app.get('/admin/dashboard', (req, res) => {
 
 app.get('/', async (req, res) => {
     try {
+        console.log("Fetching movies...");
+
         const featuredMovies = await Film.find().limit(5);
         const newReleases = await Film.find({ 
             yearReleased: new Date().getFullYear()
         }).limit(5);
         const topRatedMovies = await Film.find().sort({ averageRating: -1 }).limit(5);
+
+        console.log("🎥 Featured Movies:", featuredMovies); // Log the result
+        console.log("🆕 New Releases:", newReleases);
+        console.log("⭐ Top Rated Movies:", topRatedMovies);
 
         res.render('index', {
             featuredMovies,
@@ -107,7 +113,7 @@ app.get('/', async (req, res) => {
             user: req.session.user
         });
     } catch (error) {
-        console.error("Error fetching movies:", error);
+        console.error("❌ Error fetching movies:", error);
         res.status(500).send("Internal Server Error");
     }
 });
