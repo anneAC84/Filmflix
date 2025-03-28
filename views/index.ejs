@@ -28,20 +28,24 @@
     <div class="featured-movies">
       <h2>Featured Movies</h2>
       <div class="movies-list carousel">
-        <!-- Dynamically populated movie cards for featured movies -->
-        <% featuredMovies.forEach((movie) => { %>
-          <div class="movie-card">
-            <a href="/films/<%= movie._id %>">
-              <img src="<%= movie.imageURL %>" alt="<%= movie.title %>" class="movie-image" />
-              <p class="movie-title"><%= movie.title %></p>
-            </a>
-          </div>
-        <% }) %>
+          <!-- Dynamically populated movie cards for featured movies -->
+          <% if (featuredMovies && featuredMovies.length > 0) { %>
+              <% featuredMovies.forEach((movie) => { %>
+                  <div class="movie-card">
+                      <a href="/films/<%= movie._id %>">
+                          <img src="<%= movie.imageURL %>" alt="<%= movie.title %>" class="movie-image" />
+                          <p class="movie-title"><%= movie.title %></p>
+                      </a>
+                  </div>
+              <% }); %>
+          <% } else { %>
+              <p>No featured movies available</p>
+          <% } %>
       </div>
       <div class="browse-more">
-        <a href="/films" class="hero-button">Browse All Movies</a>
+          <a href="/films" class="hero-button">Browse All Movies</a>
       </div>
-    </div>
+  </div>
 
     
     <!-- New Releases Section -->
