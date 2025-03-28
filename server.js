@@ -92,9 +92,9 @@ app.get('/admin/dashboard', (req, res) => {
     res.render('admin/dashboard', { user: req.session.user });
 });
 
-app.get('/', async (req, res) => {
+app.get("/", async (req, res) => {
     try {
-        console.log("Fetching movies...");
+        console.log("🔍 Fetching movies from MongoDB...");
 
         const featuredMovies = await Film.find().limit(5);
         const newReleases = await Film.find({ 
@@ -102,11 +102,11 @@ app.get('/', async (req, res) => {
         }).limit(5);
         const topRatedMovies = await Film.find().sort({ averageRating: -1 }).limit(5);
 
-        console.log("🎥 Featured Movies:", featuredMovies); // Log the result
-        console.log("🆕 New Releases:", newReleases);
-        console.log("⭐ Top Rated Movies:", topRatedMovies);
+        console.log("🎥 Featured Movies:", featuredMovies.length ? featuredMovies : "No movies found!");
+        console.log("🆕 New Releases:", newReleases.length ? newReleases : "No new releases found!");
+        console.log("⭐ Top Rated Movies:", topRatedMovies.length ? topRatedMovies : "No top-rated movies found!");
 
-        res.render('index', {
+        res.render("index", {
             featuredMovies,
             newReleases,
             topRatedMovies,
@@ -117,7 +117,6 @@ app.get('/', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-
 // Auth
 app.use("/auth", authController);
 app.use('/films', filmsController);
